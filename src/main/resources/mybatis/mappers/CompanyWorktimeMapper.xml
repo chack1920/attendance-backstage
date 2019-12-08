@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meterbox.attendance.backstage.dao.CompanyWorktimeMapper">
+  <resultMap id="BaseResultMap" type="com.meterbox.attendance.backstage.entity.CompanyWorktime">
+    <id column="work_id" jdbcType="VARCHAR" property="workId" />
+    <result column="go_to_work_time" jdbcType="VARCHAR" property="goToWorkTime" />
+    <result column="go_off_work_time" jdbcType="VARCHAR" property="goOffWorkTime" />
+    <result column="week" jdbcType="VARCHAR" property="week" />
+    <result column="start_signin_time" jdbcType="VARCHAR" property="startSigninTime" />
+    <result column="end_signin_time" jdbcType="VARCHAR" property="endSigninTime" />
+    <result column="start_signback_time" jdbcType="VARCHAR" property="startSignbackTime" />
+    <result column="end_signback_time" jdbcType="VARCHAR" property="endSignbackTime" />
+    <result column="late" jdbcType="INTEGER" property="late" />
+    <result column="leave_early" jdbcType="INTEGER" property="leaveEarly" />
+    <result column="interval_time" jdbcType="INTEGER" property="intervalTime" />
+    <result column="created_time" jdbcType="BIGINT" property="createdTime" />
+    <result column="company_id" jdbcType="VARCHAR" property="companyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    work_id, go_to_work_time, go_off_work_time, week, start_signin_time, end_signin_time, 
+    start_signback_time, end_signback_time, late, leave_early, interval_time, created_time, 
+    company_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ai_company_worktime
+    where work_id = #{workId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ai_company_worktime
+    where work_id = #{workId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.meterbox.attendance.backstage.entity.CompanyWorktime">
+    insert into ai_company_worktime (work_id, go_to_work_time, go_off_work_time, 
+      week, start_signin_time, end_signin_time, 
+      start_signback_time, end_signback_time, late, 
+      leave_early, interval_time, created_time, 
+      company_id)
+    values (#{workId,jdbcType=VARCHAR}, #{goToWorkTime,jdbcType=VARCHAR}, #{goOffWorkTime,jdbcType=VARCHAR}, 
+      #{week,jdbcType=VARCHAR}, #{startSigninTime,jdbcType=VARCHAR}, #{endSigninTime,jdbcType=VARCHAR}, 
+      #{startSignbackTime,jdbcType=VARCHAR}, #{endSignbackTime,jdbcType=VARCHAR}, #{late,jdbcType=INTEGER}, 
+      #{leaveEarly,jdbcType=INTEGER}, #{intervalTime,jdbcType=INTEGER}, #{createdTime,jdbcType=BIGINT}, 
+      #{companyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meterbox.attendance.backstage.entity.CompanyWorktime">
+    insert into ai_company_worktime
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="workId != null">
+        work_id,
+      </if>
+      <if test="goToWorkTime != null">
+        go_to_work_time,
+      </if>
+      <if test="goOffWorkTime != null">
+        go_off_work_time,
+      </if>
+      <if test="week != null">
+        week,
+      </if>
+      <if test="startSigninTime != null">
+        start_signin_time,
+      </if>
+      <if test="endSigninTime != null">
+        end_signin_time,
+      </if>
+      <if test="startSignbackTime != null">
+        start_signback_time,
+      </if>
+      <if test="endSignbackTime != null">
+        end_signback_time,
+      </if>
+      <if test="late != null">
+        late,
+      </if>
+      <if test="leaveEarly != null">
+        leave_early,
+      </if>
+      <if test="intervalTime != null">
+        interval_time,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="workId != null">
+        #{workId,jdbcType=VARCHAR},
+      </if>
+      <if test="goToWorkTime != null">
+        #{goToWorkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="goOffWorkTime != null">
+        #{goOffWorkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="week != null">
+        #{week,jdbcType=VARCHAR},
+      </if>
+      <if test="startSigninTime != null">
+        #{startSigninTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endSigninTime != null">
+        #{endSigninTime,jdbcType=VARCHAR},
+      </if>
+      <if test="startSignbackTime != null">
+        #{startSignbackTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endSignbackTime != null">
+        #{endSignbackTime,jdbcType=VARCHAR},
+      </if>
+      <if test="late != null">
+        #{late,jdbcType=INTEGER},
+      </if>
+      <if test="leaveEarly != null">
+        #{leaveEarly,jdbcType=INTEGER},
+      </if>
+      <if test="intervalTime != null">
+        #{intervalTime,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meterbox.attendance.backstage.entity.CompanyWorktime">
+    update ai_company_worktime
+    <set>
+      <if test="goToWorkTime != null">
+        go_to_work_time = #{goToWorkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="goOffWorkTime != null">
+        go_off_work_time = #{goOffWorkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="week != null">
+        week = #{week,jdbcType=VARCHAR},
+      </if>
+      <if test="startSigninTime != null">
+        start_signin_time = #{startSigninTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endSigninTime != null">
+        end_signin_time = #{endSigninTime,jdbcType=VARCHAR},
+      </if>
+      <if test="startSignbackTime != null">
+        start_signback_time = #{startSignbackTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endSignbackTime != null">
+        end_signback_time = #{endSignbackTime,jdbcType=VARCHAR},
+      </if>
+      <if test="late != null">
+        late = #{late,jdbcType=INTEGER},
+      </if>
+      <if test="leaveEarly != null">
+        leave_early = #{leaveEarly,jdbcType=INTEGER},
+      </if>
+      <if test="intervalTime != null">
+        interval_time = #{intervalTime,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where work_id = #{workId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meterbox.attendance.backstage.entity.CompanyWorktime">
+    update ai_company_worktime
+    set go_to_work_time = #{goToWorkTime,jdbcType=VARCHAR},
+      go_off_work_time = #{goOffWorkTime,jdbcType=VARCHAR},
+      week = #{week,jdbcType=VARCHAR},
+      start_signin_time = #{startSigninTime,jdbcType=VARCHAR},
+      end_signin_time = #{endSigninTime,jdbcType=VARCHAR},
+      start_signback_time = #{startSignbackTime,jdbcType=VARCHAR},
+      end_signback_time = #{endSignbackTime,jdbcType=VARCHAR},
+      late = #{late,jdbcType=INTEGER},
+      leave_early = #{leaveEarly,jdbcType=INTEGER},
+      interval_time = #{intervalTime,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=BIGINT},
+      company_id = #{companyId,jdbcType=VARCHAR}
+    where work_id = #{workId,jdbcType=VARCHAR}
+  </update>
+</mapper>

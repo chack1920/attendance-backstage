@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meterbox.attendance.backstage.dao.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.meterbox.attendance.backstage.entity.UserInfo">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="d_id" jdbcType="VARCHAR" property="dId" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="face_url" jdbcType="VARCHAR" property="faceUrl" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="entry_time" jdbcType="VARCHAR" property="entryTime" />
+    <result column="created_time" jdbcType="BIGINT" property="createdTime" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="updated_time" jdbcType="BIGINT" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, d_id, number, username, gender, mobile, id_card, face_url, position, entry_time, 
+    created_time, remarks, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ai_userinfo
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ai_userinfo
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.meterbox.attendance.backstage.entity.UserInfo">
+    insert into ai_userinfo (user_id, d_id, number, 
+      username, gender, mobile, 
+      id_card, face_url, position, 
+      entry_time, created_time, remarks, 
+      updated_time)
+    values (#{userId,jdbcType=VARCHAR}, #{dId,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{faceUrl,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{entryTime,jdbcType=VARCHAR}, #{createdTime,jdbcType=BIGINT}, #{remarks,jdbcType=VARCHAR}, 
+      #{updatedTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meterbox.attendance.backstage.entity.UserInfo">
+    insert into ai_userinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="dId != null">
+        d_id,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="faceUrl != null">
+        face_url,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="entryTime != null">
+        entry_time,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="dId != null">
+        #{dId,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="faceUrl != null">
+        #{faceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="entryTime != null">
+        #{entryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meterbox.attendance.backstage.entity.UserInfo">
+    update ai_userinfo
+    <set>
+      <if test="dId != null">
+        d_id = #{dId,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="faceUrl != null">
+        face_url = #{faceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="entryTime != null">
+        entry_time = #{entryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meterbox.attendance.backstage.entity.UserInfo">
+    update ai_userinfo
+    set d_id = #{dId,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      face_url = #{faceUrl,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      entry_time = #{entryTime,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=BIGINT},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=BIGINT}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

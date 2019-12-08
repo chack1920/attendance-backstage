@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meterbox.attendance.backstage.dao.AdminInfoMapper">
+  <resultMap id="BaseResultMap" type="com.meterbox.attendance.backstage.entity.AdminInfo">
+    <id column="admin_id" jdbcType="VARCHAR" property="adminId" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="created_time" jdbcType="BIGINT" property="createdTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    admin_id, mobile, password, created_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ai_admin_info
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ai_admin_info
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.meterbox.attendance.backstage.entity.AdminInfo">
+    insert into ai_admin_info (admin_id, mobile, password, 
+      created_time)
+    values (#{adminId,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meterbox.attendance.backstage.entity.AdminInfo">
+    insert into ai_admin_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        #{adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meterbox.attendance.backstage.entity.AdminInfo">
+    update ai_admin_info
+    <set>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meterbox.attendance.backstage.entity.AdminInfo">
+    update ai_admin_info
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=BIGINT}
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </update>
+</mapper>

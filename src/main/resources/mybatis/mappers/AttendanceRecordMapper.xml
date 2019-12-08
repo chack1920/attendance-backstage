@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meterbox.attendance.backstage.dao.AttendanceRecordMapper">
+  <resultMap id="BaseResultMap" type="com.meterbox.attendance.backstage.entity.AttendanceRecord">
+    <id column="data_id" jdbcType="VARCHAR" property="dataId" />
+    <result column="d_id" jdbcType="VARCHAR" property="dId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="sign_in_time" jdbcType="VARCHAR" property="signInTime" />
+    <result column="sign_in_state" jdbcType="VARCHAR" property="signInState" />
+    <result column="sign_back_time" jdbcType="VARCHAR" property="signBackTime" />
+    <result column="sign_back_state" jdbcType="VARCHAR" property="signBackState" />
+    <result column="shifts" jdbcType="VARCHAR" property="shifts" />
+    <result column="attendance_state" jdbcType="VARCHAR" property="attendanceState" />
+    <result column="exception_handle" jdbcType="VARCHAR" property="exceptionHandle" />
+    <result column="created_time" jdbcType="BIGINT" property="createdTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    data_id, d_id, user_id, sign_in_time, sign_in_state, sign_back_time, sign_back_state, 
+    shifts, attendance_state, exception_handle, created_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ai_attendance_record
+    where data_id = #{dataId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ai_attendance_record
+    where data_id = #{dataId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.meterbox.attendance.backstage.entity.AttendanceRecord">
+    insert into ai_attendance_record (data_id, d_id, user_id, 
+      sign_in_time, sign_in_state, sign_back_time, 
+      sign_back_state, shifts, attendance_state, 
+      exception_handle, created_time)
+    values (#{dataId,jdbcType=VARCHAR}, #{dId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{signInTime,jdbcType=VARCHAR}, #{signInState,jdbcType=VARCHAR}, #{signBackTime,jdbcType=VARCHAR}, 
+      #{signBackState,jdbcType=VARCHAR}, #{shifts,jdbcType=VARCHAR}, #{attendanceState,jdbcType=VARCHAR}, 
+      #{exceptionHandle,jdbcType=VARCHAR}, #{createdTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meterbox.attendance.backstage.entity.AttendanceRecord">
+    insert into ai_attendance_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dataId != null">
+        data_id,
+      </if>
+      <if test="dId != null">
+        d_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="signInTime != null">
+        sign_in_time,
+      </if>
+      <if test="signInState != null">
+        sign_in_state,
+      </if>
+      <if test="signBackTime != null">
+        sign_back_time,
+      </if>
+      <if test="signBackState != null">
+        sign_back_state,
+      </if>
+      <if test="shifts != null">
+        shifts,
+      </if>
+      <if test="attendanceState != null">
+        attendance_state,
+      </if>
+      <if test="exceptionHandle != null">
+        exception_handle,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dataId != null">
+        #{dataId,jdbcType=VARCHAR},
+      </if>
+      <if test="dId != null">
+        #{dId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="signInTime != null">
+        #{signInTime,jdbcType=VARCHAR},
+      </if>
+      <if test="signInState != null">
+        #{signInState,jdbcType=VARCHAR},
+      </if>
+      <if test="signBackTime != null">
+        #{signBackTime,jdbcType=VARCHAR},
+      </if>
+      <if test="signBackState != null">
+        #{signBackState,jdbcType=VARCHAR},
+      </if>
+      <if test="shifts != null">
+        #{shifts,jdbcType=VARCHAR},
+      </if>
+      <if test="attendanceState != null">
+        #{attendanceState,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionHandle != null">
+        #{exceptionHandle,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meterbox.attendance.backstage.entity.AttendanceRecord">
+    update ai_attendance_record
+    <set>
+      <if test="dId != null">
+        d_id = #{dId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="signInTime != null">
+        sign_in_time = #{signInTime,jdbcType=VARCHAR},
+      </if>
+      <if test="signInState != null">
+        sign_in_state = #{signInState,jdbcType=VARCHAR},
+      </if>
+      <if test="signBackTime != null">
+        sign_back_time = #{signBackTime,jdbcType=VARCHAR},
+      </if>
+      <if test="signBackState != null">
+        sign_back_state = #{signBackState,jdbcType=VARCHAR},
+      </if>
+      <if test="shifts != null">
+        shifts = #{shifts,jdbcType=VARCHAR},
+      </if>
+      <if test="attendanceState != null">
+        attendance_state = #{attendanceState,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionHandle != null">
+        exception_handle = #{exceptionHandle,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where data_id = #{dataId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meterbox.attendance.backstage.entity.AttendanceRecord">
+    update ai_attendance_record
+    set d_id = #{dId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      sign_in_time = #{signInTime,jdbcType=VARCHAR},
+      sign_in_state = #{signInState,jdbcType=VARCHAR},
+      sign_back_time = #{signBackTime,jdbcType=VARCHAR},
+      sign_back_state = #{signBackState,jdbcType=VARCHAR},
+      shifts = #{shifts,jdbcType=VARCHAR},
+      attendance_state = #{attendanceState,jdbcType=VARCHAR},
+      exception_handle = #{exceptionHandle,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=BIGINT}
+    where data_id = #{dataId,jdbcType=VARCHAR}
+  </update>
+</mapper>

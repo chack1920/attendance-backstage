@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meterbox.attendance.backstage.dao.WeekendOrHolidayMapper">
+  <resultMap id="BaseResultMap" type="com.meterbox.attendance.backstage.entity.WeekendOrHoliday">
+    <id column="data_id" jdbcType="VARCHAR" property="dataId" />
+    <result column="d_id" jdbcType="VARCHAR" property="dId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="sign_in_time" jdbcType="VARCHAR" property="signInTime" />
+    <result column="sign_back_time" jdbcType="VARCHAR" property="signBackTime" />
+    <result column="shifts" jdbcType="VARCHAR" property="shifts" />
+    <result column="overtime_hours" jdbcType="REAL" property="overtimeHours" />
+    <result column="created_time" jdbcType="VARCHAR" property="createdTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    data_id, d_id, user_id, sign_in_time, sign_back_time, shifts, overtime_hours, created_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ai_weekend_or_holiday
+    where data_id = #{dataId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ai_weekend_or_holiday
+    where data_id = #{dataId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.meterbox.attendance.backstage.entity.WeekendOrHoliday">
+    insert into ai_weekend_or_holiday (data_id, d_id, user_id, 
+      sign_in_time, sign_back_time, shifts, 
+      overtime_hours, created_time)
+    values (#{dataId,jdbcType=VARCHAR}, #{dId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{signInTime,jdbcType=VARCHAR}, #{signBackTime,jdbcType=VARCHAR}, #{shifts,jdbcType=VARCHAR}, 
+      #{overtimeHours,jdbcType=REAL}, #{createdTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meterbox.attendance.backstage.entity.WeekendOrHoliday">
+    insert into ai_weekend_or_holiday
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dataId != null">
+        data_id,
+      </if>
+      <if test="dId != null">
+        d_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="signInTime != null">
+        sign_in_time,
+      </if>
+      <if test="signBackTime != null">
+        sign_back_time,
+      </if>
+      <if test="shifts != null">
+        shifts,
+      </if>
+      <if test="overtimeHours != null">
+        overtime_hours,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dataId != null">
+        #{dataId,jdbcType=VARCHAR},
+      </if>
+      <if test="dId != null">
+        #{dId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="signInTime != null">
+        #{signInTime,jdbcType=VARCHAR},
+      </if>
+      <if test="signBackTime != null">
+        #{signBackTime,jdbcType=VARCHAR},
+      </if>
+      <if test="shifts != null">
+        #{shifts,jdbcType=VARCHAR},
+      </if>
+      <if test="overtimeHours != null">
+        #{overtimeHours,jdbcType=REAL},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meterbox.attendance.backstage.entity.WeekendOrHoliday">
+    update ai_weekend_or_holiday
+    <set>
+      <if test="dId != null">
+        d_id = #{dId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="signInTime != null">
+        sign_in_time = #{signInTime,jdbcType=VARCHAR},
+      </if>
+      <if test="signBackTime != null">
+        sign_back_time = #{signBackTime,jdbcType=VARCHAR},
+      </if>
+      <if test="shifts != null">
+        shifts = #{shifts,jdbcType=VARCHAR},
+      </if>
+      <if test="overtimeHours != null">
+        overtime_hours = #{overtimeHours,jdbcType=REAL},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where data_id = #{dataId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meterbox.attendance.backstage.entity.WeekendOrHoliday">
+    update ai_weekend_or_holiday
+    set d_id = #{dId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      sign_in_time = #{signInTime,jdbcType=VARCHAR},
+      sign_back_time = #{signBackTime,jdbcType=VARCHAR},
+      shifts = #{shifts,jdbcType=VARCHAR},
+      overtime_hours = #{overtimeHours,jdbcType=REAL},
+      created_time = #{createdTime,jdbcType=VARCHAR}
+    where data_id = #{dataId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meterbox.attendance.backstage.dao.HolidayDateMapper">
+  <resultMap id="BaseResultMap" type="com.meterbox.attendance.backstage.entity.HolidayDate">
+    <id column="holiday_id" jdbcType="VARCHAR" property="holidayId" />
+    <result column="holiday_date" jdbcType="VARCHAR" property="holidayDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    holiday_id, holiday_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ai_holiday_date
+    where holiday_id = #{holidayId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ai_holiday_date
+    where holiday_id = #{holidayId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.meterbox.attendance.backstage.entity.HolidayDate">
+    insert into ai_holiday_date (holiday_id, holiday_date)
+    values (#{holidayId,jdbcType=VARCHAR}, #{holidayDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meterbox.attendance.backstage.entity.HolidayDate">
+    insert into ai_holiday_date
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="holidayId != null">
+        holiday_id,
+      </if>
+      <if test="holidayDate != null">
+        holiday_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="holidayId != null">
+        #{holidayId,jdbcType=VARCHAR},
+      </if>
+      <if test="holidayDate != null">
+        #{holidayDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meterbox.attendance.backstage.entity.HolidayDate">
+    update ai_holiday_date
+    <set>
+      <if test="holidayDate != null">
+        holiday_date = #{holidayDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where holiday_id = #{holidayId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meterbox.attendance.backstage.entity.HolidayDate">
+    update ai_holiday_date
+    set holiday_date = #{holidayDate,jdbcType=VARCHAR}
+    where holiday_id = #{holidayId,jdbcType=VARCHAR}
+  </update>
+</mapper>
